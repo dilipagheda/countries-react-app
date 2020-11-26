@@ -19,6 +19,7 @@ function Countries() {
   const [state, dispatch] = useContext(Context);
   const [redirectToError, setRedirectToError] = useState(false)
 
+  //A function to perform a search based on a search phrase
   const performSearch = async () => {
     if(state.searchPhrase.length === 0)
     {
@@ -39,6 +40,7 @@ function Countries() {
     }
   }
 
+  // this function is used for enabling or disabling pagination buttons based on where the user is at
   useEffect(() => {
     if(state.results.length === 0)
     {
@@ -60,6 +62,7 @@ function Countries() {
 
   }, [state.results.length, state.currentPageNumber, state.totalPages])
 
+  // this function fetch the countries data if there is no data and no search phrase
   useEffect(() => {
       if(state.results.length === 0 && state.searchPhrase.length === 0)
       {
@@ -80,6 +83,7 @@ function Countries() {
   },[state.results, state.searchPhrase, dispatch])  
 
 
+  //this function renders countries or displays loader
   const renderCountries = () => {
     if(showLoader)
     {
@@ -98,29 +102,35 @@ function Countries() {
       }
   }
 
+  // this function is called if user presses X button in search box
   const onCancelSearchHandler = () => {
     dispatch({type:'SET_SEARCH_PHRASE', payload:""})
     dispatch({type:'SET_COUNTRIES', payload:[]})
   }
 
+  // this function is called each time user types in search box
   const onChangeHandler = (newValue) => {
     dispatch({type:'SET_SEARCH_PHRASE', payload:newValue})
   }
 
+  // this function is called if user presses enter key in search box
   const onRequestSearchHandler = () => {
     performSearch()
   }
 
+  // this function is called if user clicks next page button
   const nextPageHandler = () => {
     const nextPageNumber = state.currentPageNumber  + 1
     dispatch({type:'SET_CURRENT_PAGE_NUMBER', payload:nextPageNumber})
   }
 
+  // this function is called if user clicks previous page button
   const previousPageHandler = () => {
     const previousPageNumber = state.currentPageNumber  - 1
     dispatch({type:'SET_CURRENT_PAGE_NUMBER', payload:previousPageNumber})  
   }
 
+  // this function is called when user clicks on the search button
   const onSearchButtonClickHandler = () => {
     performSearch()
   }

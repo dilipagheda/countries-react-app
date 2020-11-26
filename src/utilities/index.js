@@ -1,7 +1,9 @@
+// this function will calculate total number of pages based on page size (e.g., 10) and total items in the results array
 export const calculateTotalPages = (pageSize, totalItems) => {
   return Math.ceil(totalItems / pageSize)
 }
 
+// this function will return the slice from original array based on page number and page size
 export const getCurrentPage = (resultSet, pageNumber, pageSize) => {
   if(!resultSet)
   {
@@ -29,6 +31,8 @@ export const sortCountries = (sourceCountries) => {
   });
 }
 
+// this function should convert special characters to ascii characters for sorting purpose.
+// current application only requires one character but we can add more here if we need to
 const normalizeString = (str) => {
   str.replace('Å','A')
 }
