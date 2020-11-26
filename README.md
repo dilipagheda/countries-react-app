@@ -24,6 +24,7 @@ http://countries-app.s3-website-ap-southeast-2.amazonaws.com/
 
 # All following scenarios are satisified
 ## Countries Page
+```
 Scenario 1: Countries loading
 Given I am on the countries page
 When the countries haven't finished loading
@@ -64,8 +65,10 @@ Scenario 8: Clicking a country
 Given the countries list has loaded
 When I click a country
 Then take me to that country's page
+```
 
 ## Country Page
+```
 Scenario 1: Country loading
 Given I am on the country page
 When the country hasn't finished loading
@@ -78,4 +81,4 @@ Then I should see the country's flag
   And the country's name
   And the country's population
   And the country's demonym
-  
+ ```
