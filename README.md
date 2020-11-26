@@ -1,6 +1,6 @@
 # Explore Countries App
 
-This app is developed in React using React hooks version 16.8 and material UI. It interacts with the REST Countries API displays countries information. It displays country flag, population and demonym.
+This app is developed in React using React hooks version 16.8 and material UI. It interacts with the REST Countries API to display countries information. It displays country flag, population and demonym.
 
 Note: 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
