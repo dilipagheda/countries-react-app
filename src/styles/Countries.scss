@@ -1,0 +1,44 @@
+.countries-container {
+  margin: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 20px;
+  min-height: 70vh;
+  @media (min-width: 1025px) {
+    width: 70%;
+  }
+  .countries-inner-container {
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .search-button {
+    margin-left: 5px;
+  }
+  .message {
+    text-align: center;
+  }
+  .search-bar-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    .page-numbers {
+      font-size: 12px;
+      margin: auto;
+    }
+  }
+}
+.loader-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
