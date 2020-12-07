@@ -50,7 +50,7 @@ function CountryDetail() {
         </div>
         <Paper className="country-detail-container" elevation={3}>
           <div className={`country-flag ${isImageLoaded ? 'show-image':'hide-image'}`}>
-            <img src={countryDetails.flag} alt={`flag of ${countryDetails.name}`} onLoad={onImageLoadHandler}/>
+            <img src={countryDetails.flag} alt={`flag of ${countryDetails.name}`} onLoad={onImageLoadHandler} width="4" height="3"/>
           </div>
           <div className="country-name">{countryDetails.name}</div>
           

@@ -21,7 +21,7 @@ function App() {
           <Route exact path="/">
             <Countries />
           </Route>
-          <Route path="/detail/:countryCode">
+          <Route exact path="/detail/:countryCode">
             <CountryDetail />
           </Route>
           <Route path="/error">

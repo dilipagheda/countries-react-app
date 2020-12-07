@@ -10,6 +10,7 @@ import {getCurrentPage} from '../utilities'
 import Apis from '../Apis'
 import Constants from '../constants'
 import '../styles/Countries.scss'
+import axios from 'axios';
 
 function Countries() {
   const [showLoader, setShowLoader] = useState(false)
@@ -18,6 +19,10 @@ function Countries() {
   const [message, setMessage] = useState("")
   const [state, dispatch] = useContext(Context);
   const [redirectToError, setRedirectToError] = useState(false)
+
+  const CancelToken = axios.CancelToken;
+  const source = CancelToken.source();
+  const sourceRef = React.useRef(source)
 
   //A function to perform a search based on a search phrase
   const performSearch = async () => {
@@ -42,6 +47,7 @@ function Countries() {
 
   // this function is used for enabling or disabling pagination buttons based on where the user is at
   useEffect(() => {
+    console.log("useEffect 1")
     if(state.results.length === 0)
     {
       setMessage("Sorry! No records found!")
@@ -64,21 +70,32 @@ function Countries() {
 
   // this function fetch the countries data if there is no data and no search phrase
   useEffect(() => {
+      const source = sourceRef.current
+      console.log(source.token)
       if(state.results.length === 0 && state.searchPhrase.length === 0)
       {
         setMessage("")
         setShowLoader(true)
         const fetchData = async ()=> {
           try{
-            const countries = await Apis.getCountries()
+            const countries = await Apis.getCountries(source.token)
             dispatch({type:'SET_COUNTRIES', payload:countries})
             setShowLoader(false)
           }catch(error)
           {
+            if(axios.isCancel(error))
+            {
+              console.log("axios cancel")
+            }
             setRedirectToError(true)
           }
         }
         fetchData()
+        return () => {
+          console.log("unmount..")
+          setShowLoader(false)
+          source.cancel()
+        }
       }
   },[state.results, state.searchPhrase, dispatch])  
 

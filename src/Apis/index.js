@@ -1,10 +1,13 @@
 import axios from 'axios';
 
- 
-const getCountries = async () => {
+
+
+const getCountries = async (token) => {
 
  const url = 'https://restcountries.eu/rest/v2/all'
-  const response = await axios.get(url)
+  const response = await axios.get(url, {
+    cancelToken: token
+  })
   return response.data
 };
 
@@ -23,6 +26,6 @@ const searchCountriesByName = async (searchPhrase) => {
 const Api = {
   getCountries,
   getCountryDetails,
-  searchCountriesByName
+  searchCountriesByName,
 }
 export default Api
